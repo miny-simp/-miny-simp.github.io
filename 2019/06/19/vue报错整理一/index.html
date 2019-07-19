@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Vue运行中总会遇到各种的报错问题，整理一下 error awesome@1.0.0 dev: node build/dev-server.js问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: node build/dev-server.js，是端口号被占用的原因解决办法：在config文件夹中的index.js修改端口号为8088，或者其他">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue报错整理一">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/vue报错整理一/index.html">
+<meta property="og:site_name" content="走在路边的小园子">
+<meta property="og:description" content="Vue运行中总会遇到各种的报错问题，整理一下 error awesome@1.0.0 dev: node build/dev-server.js问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: node build/dev-server.js，是端口号被占用的原因解决办法：在config文件夹中的index.js修改端口号为8088，或者其他">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-20T06:51:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue报错整理一">
+<meta name="twitter:description" content="Vue运行中总会遇到各种的报错问题，整理一下 error awesome@1.0.0 dev: node build/dev-server.js问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: node build/dev-server.js，是端口号被占用的原因解决办法：在config文件夹中的index.js修改端口号为8088，或者其他">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/19/vue报错整理一/">
+
+
+
+
+
+  <title>vue报错整理一 | 走在路边的小园子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">走在路边的小园子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/vue报错整理一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="minzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/minzz.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="走在路边的小园子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue报错整理一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T14:10:45+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>  Vue运行中总会遇到各种的报错问题，整理一下</p>
+<h3 id="error-awesome-1-0-0-dev-node-build-dev-server-js"><a href="#error-awesome-1-0-0-dev-node-build-dev-server-js" class="headerlink" title="error awesome@1.0.0 dev: node build/dev-server.js"></a>error <a href="mailto:awesome@1.0.0" target="_blank" rel="noopener">awesome@1.0.0</a> dev: <code>node build/dev-server.js</code></h3><p>问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: <code>node build/dev-server.js</code>，是端口号被占用的原因<br>解决办法：在config文件夹中的index.js修改端口号为8088，或者其他</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Error</span>: listen EADDRINUSE :::<span class="number">8080</span></span><br><span class="line">    at <span class="built_in">Object</span>._errnoException (util.js:<span class="number">992</span>:<span class="number">11</span>)</span><br><span class="line">    at _exceptionWithHostPort (util.js:<span class="number">1014</span>:<span class="number">20</span>)</span><br><span class="line">    at Server.setupListenHandle [<span class="keyword">as</span> _listen2] (net.js:<span class="number">1355</span>:<span class="number">14</span>)</span><br><span class="line">    at listenInCluster (net.js:<span class="number">1396</span>:<span class="number">12</span>)</span><br><span class="line">    at Server.listen (net.js:<span class="number">1480</span>:<span class="number">7</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.listen (F:\workpace\projects\vue-demo-kugou\node_modules\express\lib\application.js:<span class="number">618</span>:<span class="number">24</span>)</span><br><span class="line">    at <span class="built_in">Object</span>.&lt;anonymous&gt; (F:\workpace\projects\vue-demo-kugou\build\dev-server.js:<span class="number">82</span>:<span class="number">18</span>)</span><br><span class="line">    at Module._compile (<span class="built_in">module</span>.js:<span class="number">652</span>:<span class="number">30</span>)</span><br><span class="line">    at <span class="built_in">Object</span>.Module._extensions..js (<span class="built_in">module</span>.js:<span class="number">663</span>:<span class="number">10</span>)</span><br><span class="line">    at Module.load (<span class="built_in">module</span>.js:<span class="number">565</span>:<span class="number">32</span>)</span><br><span class="line">    at tryModuleLoad (<span class="built_in">module</span>.js:<span class="number">505</span>:<span class="number">12</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.Module._load (<span class="built_in">module</span>.js:<span class="number">497</span>:<span class="number">3</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.Module.runMain (<span class="built_in">module</span>.js:<span class="number">693</span>:<span class="number">10</span>)</span><br><span class="line">    at startup (bootstrap_node.js:<span class="number">191</span>:<span class="number">16</span>)</span><br><span class="line">    at bootstrap_node.js:<span class="number">612</span>:<span class="number">3</span></span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno <span class="number">1</span></span><br><span class="line">npm ERR! awesome@<span class="number">1.0</span><span class="number">.0</span> dev: <span class="string">`node build/dev-server.js`</span></span><br><span class="line">npm ERR! Exit status <span class="number">1</span></span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the awesome@<span class="number">1.0</span><span class="number">.0</span> dev script.</span><br><span class="line">npm ERR! This is probably not a problem <span class="keyword">with</span> npm. There is likely additional logging output above.</span><br></pre></td></tr></table></figure>
+
+<p>有时候修改完以后依然会报错，就需要删除掉node_modules文件夹，再 npm install 一遍。</p>
+<h3 id="Vue-warn-Do-not-use-built-in-or-reserved-HTML-elements-as-component-id-Head"><a href="#Vue-warn-Do-not-use-built-in-or-reserved-HTML-elements-as-component-id-Head" class="headerlink" title="[Vue warn]: Do not use built-in or reserved HTML elements as component id: Head"></a>[Vue warn]: Do not use built-in or reserved HTML elements as component id: Head</h3><p>问题：vue.esm.js:571 [Vue warn]: Do not use built-in or reserved HTML elements as component id: Head<br>解决办法：翻译为“不要使用内置或保留的HTML元素作为组件ID：Head”，说明有命名跟html5标签冲突了，打开项目其中一个App.vue组件，将引入的组件&lt;Head &gt; 的名称改为&lt;HeadYY &gt; 或者其他名称就可以了，所有Head组件名称改为一致。</p>
+<h3 id="App-vue-parser-“babylon”-is-deprecated-we-now-treat-it-as-parser-“babel”"><a href="#App-vue-parser-“babylon”-is-deprecated-we-now-treat-it-as-parser-“babel”" class="headerlink" title="App.vue{ parser: “babylon” } is deprecated; we now treat it as { parser: “babel” }"></a>App.vue{ parser: “babylon” } is deprecated; we now treat it as { parser: “babel” }</h3><p>问题：npm run dev以后提示以上错误<br>解决办法：比如我的项目名称是vuexDemo,找到工程文件夹里的 vuexDemo\node_modules\vue-loader\lib\template-compiler\index.js,<br>//将以下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isProduction) &#123;</span><br><span class="line">  code = prettier.format(code, &#123; <span class="attr">semi</span>: <span class="literal">false</span>, <span class="attr">parser</span>: <span class="string">'babylon'</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isProduction) &#123;</span><br><span class="line">  code = prettier.format(code, &#123; <span class="attr">semi</span>: <span class="literal">false</span>, <span class="attr">parser</span>: <span class="string">'babel'</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果没有找到template-compiler文件夹，就需要更新vue-loader的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D vue-loader@14.2.4</span><br></pre></td></tr></table></figure>
+
+<p>更新以后就没有以上错误了，但是高版本也可能引起其他问题</p>
+<h3 id="npm-install时出现以下错误-npm-ERR-chromedriver-2-46-0-install-node-install-js"><a href="#npm-install时出现以下错误-npm-ERR-chromedriver-2-46-0-install-node-install-js" class="headerlink" title="npm install时出现以下错误 npm ERR! chromedriver@2.46.0 install: node install.js"></a>npm install时出现以下错误 npm ERR! <a href="mailto:chromedriver@2.46.0" target="_blank" rel="noopener">chromedriver@2.46.0</a> install: <code>node install.js</code></h3><p>问题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno <span class="number">1</span></span><br><span class="line">npm ERR! chromedriver@<span class="number">2.46</span><span class="number">.0</span> install: <span class="string">`node install.js`</span></span><br><span class="line">npm ERR! Exit status <span class="number">1</span></span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the chromedriver@<span class="number">2.46</span><span class="number">.0</span> install script.</span><br><span class="line">npm ERR! This is probably not a problem <span class="keyword">with</span> npm. There is likely additional logging output above.</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/CSS中文本溢出文字显示/" rel="next" title="CSS中文本溢出文字显示">
+                <i class="fa fa-chevron-left"></i> CSS中文本溢出文字显示
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/minzz.png" alt="minzz">
+            
+              <p class="site-author-name" itemprop="name">minzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/miny-simp" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/miny-simp" target="_blank" title="cnblogs">
+                      
+                        <i class="fa fa-fw fa-leaf"></i>cnblogs</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-awesome-1-0-0-dev-node-build-dev-server-js"><span class="nav-number">1.</span> <span class="nav-text">error awesome@1.0.0 dev: node build/dev-server.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-warn-Do-not-use-built-in-or-reserved-HTML-elements-as-component-id-Head"><span class="nav-number">2.</span> <span class="nav-text">[Vue warn]: Do not use built-in or reserved HTML elements as component id: Head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-vue-parser-“babylon”-is-deprecated-we-now-treat-it-as-parser-“babel”"><span class="nav-number">3.</span> <span class="nav-text">App.vue{ parser: “babylon” } is deprecated; we now treat it as { parser: “babel” }</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install时出现以下错误-npm-ERR-chromedriver-2-46-0-install-node-install-js"><span class="nav-number">4.</span> <span class="nav-text">npm install时出现以下错误 npm ERR! chromedriver@2.46.0 install: node install.js</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">minzz</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
