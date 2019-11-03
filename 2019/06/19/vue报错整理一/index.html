@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="走在路边的小园子">
 <meta property="og:description" content="Vue运行中总会遇到各种的报错问题，整理一下 error awesome@1.0.0 dev: node build/dev-server.js问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: node build/dev-server.js，是端口号被占用的原因解决办法：在config文件夹中的index.js修改端口号为8088，或者其他">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-20T06:51:42.000Z">
+<meta property="og:updated_time" content="2019-11-03T12:08:34.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue报错整理一">
 <meta name="twitter:description" content="Vue运行中总会遇到各种的报错问题，整理一下 error awesome@1.0.0 dev: node build/dev-server.js问题：初始化项目时，npm run dev 以后出现报错：@1.0.0 dev: node build/dev-server.js，是端口号被占用的原因解决办法：在config文件夹中的index.js修改端口号为8088，或者其他">
@@ -364,6 +364,17 @@
 
 <p>解决办法：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-warn-Computed-property-“count”-was-assigned-to-but-it-has-no-setter"><a href="#Vue-warn-Computed-property-“count”-was-assigned-to-but-it-has-no-setter" class="headerlink" title="[Vue warn]: Computed property “count” was assigned to but it has no setter."></a>[Vue warn]: Computed property “count” was assigned to but it has no setter.</h3><p>问题：修改count的值时报错<br>html:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  count() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因：vuex中是单项流，v-model是vue中的双向绑定，但是在computed中只通过get获取参数值，没有set无法改变参数值<br>修改后的 js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  count: &#123;</span><br><span class="line">    <span class="keyword">get</span>: function() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.count</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>: function() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -484,7 +495,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -555,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-awesome-1-0-0-dev-node-build-dev-server-js"><span class="nav-number">1.</span> <span class="nav-text">error awesome@1.0.0 dev: node build/dev-server.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-warn-Do-not-use-built-in-or-reserved-HTML-elements-as-component-id-Head"><span class="nav-number">2.</span> <span class="nav-text">[Vue warn]: Do not use built-in or reserved HTML elements as component id: Head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-vue-parser-“babylon”-is-deprecated-we-now-treat-it-as-parser-“babel”"><span class="nav-number">3.</span> <span class="nav-text">App.vue{ parser: “babylon” } is deprecated; we now treat it as { parser: “babel” }</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install时出现以下错误-npm-ERR-chromedriver-2-46-0-install-node-install-js"><span class="nav-number">4.</span> <span class="nav-text">npm install时出现以下错误 npm ERR! chromedriver@2.46.0 install: node install.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-awesome-1-0-0-dev-node-build-dev-server-js"><span class="nav-number">1.</span> <span class="nav-text">error awesome@1.0.0 dev: node build/dev-server.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-warn-Do-not-use-built-in-or-reserved-HTML-elements-as-component-id-Head"><span class="nav-number">2.</span> <span class="nav-text">[Vue warn]: Do not use built-in or reserved HTML elements as component id: Head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-vue-parser-“babylon”-is-deprecated-we-now-treat-it-as-parser-“babel”"><span class="nav-number">3.</span> <span class="nav-text">App.vue{ parser: “babylon” } is deprecated; we now treat it as { parser: “babel” }</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install时出现以下错误-npm-ERR-chromedriver-2-46-0-install-node-install-js"><span class="nav-number">4.</span> <span class="nav-text">npm install时出现以下错误 npm ERR! chromedriver@2.46.0 install: node install.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-warn-Computed-property-“count”-was-assigned-to-but-it-has-no-setter"><span class="nav-number">5.</span> <span class="nav-text">[Vue warn]: Computed property “count” was assigned to but it has no setter.</span></a></li></ol></div>
             
 
           </div>
