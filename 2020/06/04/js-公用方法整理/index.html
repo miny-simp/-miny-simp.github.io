@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="将json对象的null转为’’12345678function parseNullForObj(t)&amp;#123;  for(var p in t)&amp;#123;    if(typeof t[p] == &apos;undefined&apos; || t[p] == null || t[p] == &apos;null&apos;)&amp;#123;      t[p] = &apos;&apos;;    &amp;#125;  &amp;#125;  return t;&amp;">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-公用方法整理">
+<meta property="og:url" content="http://yoursite.com/2020/06/04/js-公用方法整理/index.html">
+<meta property="og:site_name" content="走在路边的小园子">
+<meta property="og:description" content="将json对象的null转为’’12345678function parseNullForObj(t)&amp;#123;  for(var p in t)&amp;#123;    if(typeof t[p] == &apos;undefined&apos; || t[p] == null || t[p] == &apos;null&apos;)&amp;#123;      t[p] = &apos;&apos;;    &amp;#125;  &amp;#125;  return t;&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-04T14:48:02.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js-公用方法整理">
+<meta name="twitter:description" content="将json对象的null转为’’12345678function parseNullForObj(t)&amp;#123;  for(var p in t)&amp;#123;    if(typeof t[p] == &apos;undefined&apos; || t[p] == null || t[p] == &apos;null&apos;)&amp;#123;      t[p] = &apos;&apos;;    &amp;#125;  &amp;#125;  return t;&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/04/js-公用方法整理/">
+
+
+
+
+
+  <title>js-公用方法整理 | 走在路边的小园子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">走在路边的小园子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/04/js-公用方法整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="minzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/minzz.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="走在路边的小园子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js-公用方法整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-04T22:28:22+08:00">
+                2020-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="将json对象的null转为’’"><a href="#将json对象的null转为’’" class="headerlink" title="将json对象的null转为’’"></a>将json对象的null转为’’</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseNullForObj</span>(<span class="params">t</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">in</span> t)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> t[p] == <span class="string">'undefined'</span> || t[p] == <span class="literal">null</span> || t[p] == <span class="string">'null'</span>)&#123;</span><br><span class="line">      t[p] = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断变量是否为空"><a href="#判断变量是否为空" class="headerlink" title="判断变量是否为空"></a>判断变量是否为空</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNull</span>(<span class="params">inVariable</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> inVariable==<span class="string">'undefined'</span>||inVariable == <span class="string">""</span> || inVariable == <span class="string">"null"</span> || inVariable == <span class="string">""</span>||inVariable==<span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="检测参数得数据类型"><a href="#检测参数得数据类型" class="headerlink" title="检测参数得数据类型"></a>检测参数得数据类型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">type = <span class="function"><span class="params">para</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(para).slice(<span class="number">8</span>,<span class="number">-1</span>)  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// --- 扩展 ---</span></span><br><span class="line"><span class="comment">// 是否字符串</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isString = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'String'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否数字</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isNumber = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Number'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否boolean</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isBoolean = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Boolean'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isFunction = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Function'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否为null</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isNull = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Null'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否undefined</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isUndefined = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Undefined'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否对象</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isObj = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Object'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否数组</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isArray = <span class="function">(<span class="params">o</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将特殊字符通过正则直接删除"><a href="#将特殊字符通过正则直接删除" class="headerlink" title="将特殊字符通过正则直接删除"></a>将特殊字符通过正则直接删除</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlEncode</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//匹配&lt; / &gt; " &amp; `</span></span><br><span class="line">  <span class="keyword">return</span> str.replace(<span class="regexp">/[&lt;&gt;"&amp;\/`']/g</span>, <span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用js限制字数，超出部分以省略号…显示，过滤空格’-amp-nbsp’"><a href="#用js限制字数，超出部分以省略号…显示，过滤空格’-amp-nbsp’" class="headerlink" title="用js限制字数，超出部分以省略号…显示，过滤空格’&amp;nbsp’"></a>用js限制字数，超出部分以省略号…显示，过滤空格’&amp;nbsp’</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showHiddenText</span>(<span class="params">content,num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newstr = content.replace(<span class="regexp">/&amp;nbsp;/ig</span>, <span class="string">""</span>);</span><br><span class="line">  newstr = newstr.replace(<span class="regexp">/&lt;br \/&gt;/g</span>, <span class="string">""</span>);</span><br><span class="line">  <span class="keyword">if</span>(content != <span class="literal">null</span> &amp;&amp; content != <span class="string">""</span> &amp;&amp; content != <span class="string">"nul"</span> &amp;&amp; content != <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(content.length &gt; num) &#123;</span><br><span class="line">      newstr = content.substring(<span class="number">0</span>, num) + <span class="string">"..."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newstr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="时间格式化（年月日时分秒）"><a href="#时间格式化（年月日时分秒）" class="headerlink" title="时间格式化（年月日时分秒）"></a>时间格式化（年月日时分秒）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="comment">//  获取当前时间戳(毫秒)</span></span><br><span class="line">dateTime = <span class="function"><span class="params">time</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> newDate = <span class="keyword">new</span> <span class="built_in">Date</span>(time);</span><br><span class="line">  <span class="keyword">let</span> &#123; y, M, d, h, m, s &#125; = &#123; </span><br><span class="line">    y: newDate.getFullYear(), </span><br><span class="line">    M: newDate.getMonth() + <span class="number">1</span>, </span><br><span class="line">    d: newDate.getDate(), </span><br><span class="line">    h: newDate.getHours(), </span><br><span class="line">    m: newDate.getMinutes(), </span><br><span class="line">    s: newDate.getSeconds() &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span>-<span class="subst">$&#123;M&#125;</span>-<span class="subst">$&#123;d&#125;</span>  <span class="subst">$&#123;h&#125;</span>:<span class="subst">$&#123;m&#125;</span>:<span class="subst">$&#123;s&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(dateTime(date));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化日期时间</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatDate</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(val) &#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(val);</span><br><span class="line">    <span class="keyword">var</span> y = date.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> MM = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    MM = MM &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + MM) : MM;</span><br><span class="line">    <span class="keyword">var</span> d = date.getDate();</span><br><span class="line">    d = d &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + d) : d;</span><br><span class="line">    <span class="keyword">var</span> h = date.getHours();</span><br><span class="line">    h = h &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + h) : h;</span><br><span class="line">    <span class="keyword">var</span> m = date.getMinutes();</span><br><span class="line">    m = m &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + m) : m;</span><br><span class="line">    <span class="keyword">var</span> s = date.getSeconds();</span><br><span class="line">    s = s &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + s) : s;</span><br><span class="line">    <span class="keyword">return</span> y + <span class="string">'-'</span> + MM + <span class="string">'-'</span> + d + <span class="string">' '</span> + h + <span class="string">':'</span> + m + <span class="string">':'</span> + s;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'-'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 秒转时分</span></span><br><span class="line">exports.formatSecond = <span class="function">(<span class="params">second</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(second)&#123;</span><br><span class="line">    <span class="keyword">var</span> HOUR_SECOND = <span class="number">3600</span>;</span><br><span class="line">    <span class="keyword">var</span> MINUTE_SECOND = <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">var</span> hour = <span class="built_in">Math</span>.floor(second / HOUR_SECOND);</span><br><span class="line">    <span class="keyword">var</span> minute = <span class="built_in">Math</span>.round(((second % HOUR_SECOND) / MINUTE_SECOND));</span><br><span class="line">    <span class="keyword">if</span>(hour &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(minute &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> hour+<span class="string">"时"</span>+minute+<span class="string">"分"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> hour+<span class="string">"时"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> minute+<span class="string">"分"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数字超过9显示省略号"><a href="#数字超过9显示省略号" class="headerlink" title="数字超过9显示省略号"></a>数字超过9显示省略号</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">num_filter = <span class="function"><span class="params">val</span> =&gt;</span>&#123;</span><br><span class="line">  val = val?val<span class="number">-0</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (val &gt; <span class="number">9</span> ) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"…"</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除数组中的元素"><a href="#删除数组中的元素" class="headerlink" title="删除数组中的元素"></a>删除数组中的元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在数组中找指定的元素,返回下标</span></span><br><span class="line">arrFinNum = <span class="function"><span class="keyword">function</span> (<span class="params">arr,num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (num == arr[i]) &#123;</span><br><span class="line">      index = i;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arrFinNum(arr,<span class="number">4</span>));  <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除指定元素</span></span><br><span class="line">delArrNum = <span class="function">(<span class="params">arr,val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> index = arrFinNum(arr, val) <span class="comment">//调用了前面自行添加的arrFinNum方法</span></span><br><span class="line">  <span class="keyword">if</span> (index != <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.splice(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断一个元素是否在数组中"><a href="#判断一个元素是否在数组中" class="headerlink" title="判断一个元素是否在数组中"></a>判断一个元素是否在数组中</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> contains = <span class="function">(<span class="params">arr, val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(val) != <span class="number">-1</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> contains = <span class="function">(<span class="params">arr, val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> $.inArray(val, arr) != <span class="number">-1</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">arrDemp = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> newArr = [];</span><br><span class="line">  <span class="keyword">let</span> m = &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = arr[i];</span><br><span class="line">    <span class="keyword">if</span> (m[n]) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">      m[n] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arrDemp(arr));  <span class="comment">//  [ 1, 2, 3, 5, 4, 6 ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以使用ES6中的new Set   </span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">let</span> arrDemp = <span class="keyword">new</span> <span class="built_in">Set</span>(arr)  <span class="comment">//arrDemp是一个对象</span></span><br><span class="line"><span class="keyword">let</span> newArr = [...arrDemp]   <span class="comment">//把arrDemp转化成数组</span></span><br><span class="line"><span class="built_in">console</span>.log(newArr);</span><br></pre></td></tr></table></figure>
+
+<h3 id="ztree树转id-pid转化为children格式"><a href="#ztree树转id-pid转化为children格式" class="headerlink" title="ztree树转id pid转化为children格式"></a>ztree树转id pid转化为children格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonDataTree = transData(res.data, <span class="string">'id'</span>, <span class="string">'pid'</span>, <span class="string">'children'</span>);  </span><br><span class="line"><span class="built_in">console</span>.log(jsonDataTree);</span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * json格式转树状结构 </span></span><br><span class="line"><span class="comment"> * @param   &#123;json&#125;      json数据 </span></span><br><span class="line"><span class="comment"> * @param   &#123;String&#125;    id的字符串 </span></span><br><span class="line"><span class="comment"> * @param   &#123;String&#125;    父id的字符串 </span></span><br><span class="line"><span class="comment"> * @param   &#123;String&#125;    children的字符串 </span></span><br><span class="line"><span class="comment"> * @return  &#123;Array&#125;     数组 </span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">transData</span>(<span class="params">a, idStr, pidStr, childrenStr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> r = [], hash = &#123;&#125;, id = idStr, pid = pidStr, children = childrenStr, i = <span class="number">0</span>, j = <span class="number">0</span>, len = a.length;  </span><br><span class="line">  <span class="keyword">for</span>(; i &lt; len; i++)&#123;  </span><br><span class="line">    hash[a[i][id]] = a[i];  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(; j &lt; len; j++)&#123;  </span><br><span class="line">    <span class="keyword">var</span> aVal = a[j], hashVP = hash[aVal[pid]]; </span><br><span class="line">    <span class="keyword">if</span>(hashVP)&#123;  </span><br><span class="line">      !hashVP[children] &amp;&amp; (hashVP[children] = []);  </span><br><span class="line">      hashVP[children].push(aVal);  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">      r.push(aVal);  </span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="keyword">return</span> r;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="html-页面传参数解析方法"><a href="#html-页面传参数解析方法" class="headerlink" title="html 页面传参数解析方法"></a>html 页面传参数解析方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPageParams</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pageurl = <span class="built_in">window</span>.location.href;</span><br><span class="line">  <span class="keyword">var</span> param = &#123;&#125;;</span><br><span class="line">  <span class="keyword">if</span> (pageurl.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> paramstr = pageurl.split(<span class="string">"?"</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">var</span> pArr = paramstr.split(<span class="string">"&amp;"</span>);</span><br><span class="line">    <span class="comment">// var pArr = paramstr.split("#"); // minzz ok-admin的tab切换会生成#divid，将&amp;替换成#</span></span><br><span class="line">    <span class="keyword">var</span> tArr = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; pArr.length; i++) &#123;</span><br><span class="line">      tArr = pArr[i].split(<span class="string">"="</span>);</span><br><span class="line">      <span class="keyword">if</span> (tArr.length == <span class="number">2</span>) &#123;</span><br><span class="line">        param[tArr[<span class="number">0</span>]] = tArr[<span class="number">1</span>];</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        param[tArr[<span class="number">0</span>]] = <span class="string">""</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> param;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制简单对象-数组"><a href="#复制简单对象-数组" class="headerlink" title="复制简单对象/数组"></a>复制简单对象/数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复制简单对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cloneObj</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newObj = &#123;&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    newObj[prop] = obj[prop];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//复制简单数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cloneArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArray = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    newArray[i] = array[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取某月份的最后一天"><a href="#获取某月份的最后一天" class="headerlink" title="获取某月份的最后一天"></a>获取某月份的最后一天</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取某月份的最后一天</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLastDay</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> dateList = data.split(<span class="string">'-'</span>);</span><br><span class="line">  <span class="keyword">var</span> new_year = dateList[<span class="number">0</span>];    <span class="comment">//取当前的年份         </span></span><br><span class="line">  <span class="keyword">var</span> new_month = dateList[<span class="number">0</span>]++;<span class="comment">//取下一个月的第一天，方便计算（最后一天不固定）         </span></span><br><span class="line">  <span class="keyword">if</span>(month&gt;<span class="number">12</span>) &#123;        </span><br><span class="line">   new_month -=<span class="number">12</span>; <span class="comment">//月份减         </span></span><br><span class="line">   new_year++; <span class="comment">//年份增         </span></span><br><span class="line">  &#125;        </span><br><span class="line">  <span class="keyword">var</span> new_date = <span class="keyword">new</span> <span class="built_in">Date</span>(new_year,new_month,<span class="number">1</span>); <span class="comment">//取当年当月中的第一天</span></span><br><span class="line">  <span class="keyword">var</span> lastDay = (<span class="keyword">new</span> <span class="built_in">Date</span>(new_date.getTime()<span class="number">-1000</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>)).getDate();</span><br><span class="line">  <span class="keyword">return</span> data + <span class="string">'-'</span> + lastDay;<span class="comment">//获取当月最后一天日期         </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js截取两个字符串之间的内容</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"aaabbbcccdddeeefff"</span>;</span><br><span class="line">str = str.match(<span class="regexp">/aaa(\S*)fff/</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="built_in">console</span>.log(str);<span class="comment">//结果bbbcccdddeee</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js截取某个字符串前面的内容</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"aaabbbcccdddeeefff"</span>;</span><br><span class="line">str = str.match(<span class="regexp">/(\S*)fff/</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="built_in">console</span>.log(str);<span class="comment">//结果aaabbbcccddd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js截取某个字符串后面的内容</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"aaabbbcccdddeeefff"</span>;</span><br><span class="line">str = str.match(<span class="regexp">/aaa(\S*)/</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="built_in">console</span>.log(str);<span class="comment">//结果bbbcccdddeeefff</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 截取字符串的后几位数</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"abcdefghhhh"</span>;<span class="comment">//截取后4位</span></span><br><span class="line">str.substring(str.length<span class="number">-4</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/04/人设/" rel="next" title="人设">
+                <i class="fa fa-chevron-left"></i> 人设
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/04/js-layui问题合集/" rel="prev" title="js-layui问题合集">
+                js-layui问题合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/minzz.png" alt="minzz">
+            
+              <p class="site-author-name" itemprop="name">minzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/miny-simp" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/miny-simp" target="_blank" title="cnblogs">
+                      
+                        <i class="fa fa-fw fa-leaf"></i>cnblogs</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#将json对象的null转为’’"><span class="nav-number">1.</span> <span class="nav-text">将json对象的null转为’’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断变量是否为空"><span class="nav-number">2.</span> <span class="nav-text">判断变量是否为空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测参数得数据类型"><span class="nav-number">3.</span> <span class="nav-text">检测参数得数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将特殊字符通过正则直接删除"><span class="nav-number">4.</span> <span class="nav-text">将特殊字符通过正则直接删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用js限制字数，超出部分以省略号…显示，过滤空格’-amp-nbsp’"><span class="nav-number">5.</span> <span class="nav-text">用js限制字数，超出部分以省略号…显示，过滤空格’&amp;nbsp’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间格式化（年月日时分秒）"><span class="nav-number">6.</span> <span class="nav-text">时间格式化（年月日时分秒）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字超过9显示省略号"><span class="nav-number">7.</span> <span class="nav-text">数字超过9显示省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数组中的元素"><span class="nav-number">8.</span> <span class="nav-text">删除数组中的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个元素是否在数组中"><span class="nav-number">9.</span> <span class="nav-text">判断一个元素是否在数组中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组去重"><span class="nav-number">10.</span> <span class="nav-text">数组去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ztree树转id-pid转化为children格式"><span class="nav-number">11.</span> <span class="nav-text">ztree树转id pid转化为children格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html-页面传参数解析方法"><span class="nav-number">12.</span> <span class="nav-text">html 页面传参数解析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制简单对象-数组"><span class="nav-number">13.</span> <span class="nav-text">复制简单对象/数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取某月份的最后一天"><span class="nav-number">14.</span> <span class="nav-text">获取某月份的最后一天</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串截取"><span class="nav-number">15.</span> <span class="nav-text">字符串截取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待续"><span class="nav-number">16.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">minzz</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
