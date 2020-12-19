@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="开发工具,vscode,">
+  <meta name="keywords" content="Vue,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="有选择：突出显示变量（或任何文本）按Cmd + Shift + L.输出（在新行上）将是：console.log（’variable：’，variable）;">
-<meta name="keywords" content="开发工具,vscode">
+<meta name="description" content="一 日常偶遇小问题（更新中）1、计算属性【demo：数据过滤】：将vFor中需要进行vIf判断的属性先过滤掉">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VScode 快捷键">
-<meta property="og:url" content="http://yoursite.com/2019/01/28/vscode 快捷键/index.html">
+<meta property="og:title" content="Vue 日常学习小笔记">
+<meta property="og:url" content="http://yoursite.com/2020/12/19/vue-日常学习小笔记/index.html">
 <meta property="og:site_name" content="走在路边的小园子">
-<meta property="og:description" content="有选择：突出显示变量（或任何文本）按Cmd + Shift + L.输出（在新行上）将是：console.log（’variable：’，variable）;">
+<meta property="og:description" content="一 日常偶遇小问题（更新中）1、计算属性【demo：数据过滤】：将vFor中需要进行vIf判断的属性先过滤掉">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T09:28:02.000Z">
+<meta property="og:updated_time" content="2020-12-19T10:56:10.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VScode 快捷键">
-<meta name="twitter:description" content="有选择：突出显示变量（或任何文本）按Cmd + Shift + L.输出（在新行上）将是：console.log（’variable：’，variable）;">
+<meta name="twitter:title" content="Vue 日常学习小笔记">
+<meta name="twitter:description" content="一 日常偶遇小问题（更新中）1、计算属性【demo：数据过滤】：将vFor中需要进行vIf判断的属性先过滤掉">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/28/vscode 快捷键/">
+  <link rel="canonical" href="http://yoursite.com/2020/12/19/vue-日常学习小笔记/">
 
 
 
 
 
-  <title>VScode 快捷键 | 走在路边的小园子</title>
+  <title>Vue 日常学习小笔记 | 走在路边的小园子</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/vscode 快捷键/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/19/vue-日常学习小笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="minzz">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">VScode 快捷键</h1>
+          <h1 class="post-title" itemprop="name headline">Vue 日常学习小笔记</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T14:23:54+08:00">
-                2019-01-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-19T18:51:00+08:00">
+                2020-12-19
               </time>
             
 
@@ -342,13 +342,21 @@
       
 
       
-        <p><strong>有选择：</strong><br>突出显示变量（或任何文本）<br>按Cmd + Shift + L.<br>输出（在新行上）将是：console.log（’variable：’，variable）;</p>
+        <h3 id="一-日常偶遇小问题（更新中）"><a href="#一-日常偶遇小问题（更新中）" class="headerlink" title="一 日常偶遇小问题（更新中）"></a>一 日常偶遇小问题（更新中）</h3><h4 id="1、计算属性"><a href="#1、计算属性" class="headerlink" title="1、计算属性"></a>1、计算属性</h4><p>【demo：数据过滤】：将vFor中需要进行vIf判断的属性先过滤掉</p>
 <a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算属性</span></span><br><span class="line">computed: &#123;</span><br><span class="line">  filterList: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.showData.filter(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回需要显示的数据</span></span><br><span class="line">    <span class="keyword">return</span> data.isShow</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p><strong>没有选择：</strong><br>按Cmd + Shift + L.<br>输出（在同一行）将是：console.log（）;<br>要删除console.logs：<br>按Cmd + Shift + D.<br>这将删除当前文档中的所有console.log语句</p>
-<hr>
-<p>Ctrl + c　退出终端<br>Ctrl + K + 0  折叠所有区域代码（注意是零不是O）<br>Ctrl + K + J  展开所有折叠区域代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in filterList"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">  &#123;&#123; item.name &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2、给对象添加新属性"><a href="#2、给对象添加新属性" class="headerlink" title="2、给对象添加新属性"></a>2、给对象添加新属性</h4><p>Vue.set(Object,‘属性名’，默认值)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例一：循环向 a里面的每一个数据添加一个名为aa值为0的新属性</span></span><br><span class="line">a.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">  Vue.set(res, <span class="string">'aa'</span>, <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="keyword">this</span>.obj = &#123; <span class="attr">a</span>: <span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(this.obj, 'e', 1);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、-route-和-router-的区别"><a href="#3、-route-和-router-的区别" class="headerlink" title="3、$route 和 $router 的区别"></a>3、$route 和 $router 的区别</h4><p>router是VueRouter的一个对象，通过Vue.use(VueRouter)和VueRouter的构造函数得到一个router的实例对象,此对象是一个全局对象，它包含了所有的路由</p>
+<p>route是一个跳转的路由对象，每一个路由都会有一个route对象,是一个局部的对象,可以获取对应的name,path,params,query等</p>
+<h4 id="4、router-view-的-key"><a href="#4、router-view-的-key" class="headerlink" title="4、router-view 的 key"></a>4、router-view 的 key</h4><p>由于 Vue 会复用相同组件, 即 /page/1 =&gt; /page/2 或者 /page?id=1 =&gt; /page?id=2 这类链接跳转时, 将不在执行created, mounted之类的钩子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-view</span> <span class="attr">:key</span>=<span class="string">"$route.fullpath"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样组件的 created 和 mounted 就都会执行</p>
 
       
     </div>
@@ -366,9 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/开发工具/" rel="tag"># 开发工具</a>
-          
-            <a href="/tags/vscode/" rel="tag"># vscode</a>
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
           
         </div>
       
@@ -381,15 +387,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/12/19/note-人设/" rel="next" title="人设">
+                <i class="fa fa-chevron-left"></i> 人设
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/10/echarts统计图实例/" rel="prev" title="echarts统计图实例">
-                echarts统计图实例 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -441,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -520,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-日常偶遇小问题（更新中）"><span class="nav-number">1.</span> <span class="nav-text">一 日常偶遇小问题（更新中）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、计算属性"><span class="nav-number">1.1.</span> <span class="nav-text">1、计算属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、给对象添加新属性"><span class="nav-number">1.2.</span> <span class="nav-text">2、给对象添加新属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、-route-和-router-的区别"><span class="nav-number">1.3.</span> <span class="nav-text">3、$route 和 $router 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、router-view-的-key"><span class="nav-number">1.4.</span> <span class="nav-text">4、router-view 的 key</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="if else 结构的优化(数据结构对代码的简化)例如： 123456789101112131415161718192021function returnWeekday()&amp;#123;    let string = &quot;今天是星期&quot;;    let date = new Date().getDay();    if (date === 0) &amp;#123;        string += &quot;日&quot;;">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="if else 结构的优化">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/js-ifelse结构的优化/index.html">
+<meta property="og:site_name" content="走在路边的小园子">
+<meta property="og:description" content="if else 结构的优化(数据结构对代码的简化)例如： 123456789101112131415161718192021function returnWeekday()&amp;#123;    let string = &quot;今天是星期&quot;;    let date = new Date().getDay();    if (date === 0) &amp;#123;        string += &quot;日&quot;;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-19T10:48:43.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="if else 结构的优化">
+<meta name="twitter:description" content="if else 结构的优化(数据结构对代码的简化)例如： 123456789101112131415161718192021function returnWeekday()&amp;#123;    let string = &quot;今天是星期&quot;;    let date = new Date().getDay();    if (date === 0) &amp;#123;        string += &quot;日&quot;;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/10/js-ifelse结构的优化/">
+
+
+
+
+
+  <title>if else 结构的优化 | 走在路边的小园子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">走在路边的小园子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/js-ifelse结构的优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="minzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/minzz.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="走在路边的小园子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">if else 结构的优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T15:42:40+08:00">
+                2019-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="if-else-结构的优化-数据结构对代码的简化"><a href="#if-else-结构的优化-数据结构对代码的简化" class="headerlink" title="if else 结构的优化(数据结构对代码的简化)"></a>if else 结构的优化(数据结构对代码的简化)</h3><p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">"今天是星期"</span>;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getDay();</span><br><span class="line">    <span class="keyword">if</span> (date === <span class="number">0</span>) &#123;</span><br><span class="line">        string += <span class="string">"日"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">1</span>) &#123;</span><br><span class="line">        string += <span class="string">"一"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">2</span>) &#123;</span><br><span class="line">        string += <span class="string">"二"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">3</span>) &#123;</span><br><span class="line">        string += <span class="string">"三"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">4</span>) &#123;</span><br><span class="line">        string += <span class="string">"四"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">5</span>) &#123;</span><br><span class="line">        string += <span class="string">"五"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (date === <span class="number">6</span>) &#123;</span><br><span class="line">        string += <span class="string">"六"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> string</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+<p>if else 的判断太多</p>
+<a id="more"></a>
+<h3 id="使用switch来优化一下："><a href="#使用switch来优化一下：" class="headerlink" title="使用switch来优化一下："></a>使用switch来优化一下：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">"今天是星期"</span>;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getDay();</span><br><span class="line">    <span class="keyword">switch</span> (date) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span> :</span><br><span class="line">            string += <span class="string">"日"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span> :</span><br><span class="line">            string += <span class="string">"一"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span> :</span><br><span class="line">            string += <span class="string">"二"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span> :</span><br><span class="line">            string += <span class="string">"三"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span> :</span><br><span class="line">            string += <span class="string">"四"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span> :</span><br><span class="line">            string += <span class="string">"五"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span> :</span><br><span class="line">            string += <span class="string">"六"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> string</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用数组来优化："><a href="#使用数组来优化：" class="headerlink" title="使用数组来优化："></a>使用数组来优化：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">"今天是星期"</span>;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getDay();</span><br><span class="line">    <span class="comment">// 使用数组</span></span><br><span class="line">    <span class="keyword">let</span> dateArr = [<span class="string">'天'</span>,<span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>];</span><br><span class="line">    <span class="keyword">return</span> string + dateArr[date]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+<h3 id="倘若我们的每个-case-是不规律的字符串呢？那我们使用对象，每个-case-为一个-key"><a href="#倘若我们的每个-case-是不规律的字符串呢？那我们使用对象，每个-case-为一个-key" class="headerlink" title="倘若我们的每个 case 是不规律的字符串呢？那我们使用对象，每个 case 为一个 key"></a>倘若我们的每个 case 是不规律的字符串呢？那我们使用对象，每个 case 为一个 key</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">"今天是星期"</span>;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getDay();</span><br><span class="line">    <span class="comment">// 使用对象</span></span><br><span class="line">    dateObj = &#123; </span><br><span class="line">        <span class="number">0</span>: <span class="string">'天'</span>, </span><br><span class="line">        <span class="number">1</span>: <span class="string">"一"</span>, </span><br><span class="line">        <span class="number">2</span>: <span class="string">"二"</span>, </span><br><span class="line">        <span class="number">3</span>: <span class="string">"三"</span>, </span><br><span class="line">        <span class="number">4</span>: <span class="string">"四"</span>, </span><br><span class="line">        <span class="number">5</span>: <span class="string">"五"</span>, </span><br><span class="line">        <span class="number">6</span>: <span class="string">"六"</span>, </span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> string + dateObj[date]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-charAt-字符方法"><a href="#使用-charAt-字符方法" class="headerlink" title="使用 charAt 字符方法"></a>使用 charAt 字符方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// charAt 定位方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"今天是星期"</span> + <span class="string">"日一二三四五六"</span>.charAt(<span class="keyword">new</span> <span class="built_in">Date</span>().getDay());</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+<h3 id="若要求returnWeekday-方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。"><a href="#若要求returnWeekday-方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。" class="headerlink" title="若要求returnWeekday() 方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。"></a>若要求returnWeekday() 方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnWeekday</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">"今天是星期"</span>;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getDay();</span><br><span class="line">    <span class="comment">// 使用对象</span></span><br><span class="line">    dateObj = &#123; </span><br><span class="line">        <span class="number">0</span>: [<span class="string">'天'</span>,<span class="string">'休'</span>], </span><br><span class="line">        <span class="number">1</span>: [<span class="string">"一"</span>,<span class="string">'工'</span>], </span><br><span class="line">        <span class="number">2</span>: [<span class="string">"二"</span>,<span class="string">'工'</span>], </span><br><span class="line">        <span class="number">3</span>: [<span class="string">"三"</span>,<span class="string">'工'</span>], </span><br><span class="line">        <span class="number">4</span>: [<span class="string">"四"</span>,<span class="string">'工'</span>], </span><br><span class="line">        <span class="number">5</span>: [<span class="string">"五"</span>,<span class="string">'工'</span>], </span><br><span class="line">        <span class="number">6</span>: [<span class="string">"六"</span>,<span class="string">'休'</span>], </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 类型，这里也可以对应相关方法</span></span><br><span class="line">    dayType = &#123;</span><br><span class="line">        <span class="string">'休'</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">// some code</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'为休息日'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'工'</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">// some code</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'为工作日'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> returnData = &#123;</span><br><span class="line">        <span class="string">'string'</span> : string + dateObj[date][<span class="number">0</span>],</span><br><span class="line">        <span class="string">'method'</span> : dayType[dateObj[date][<span class="number">1</span>]]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> returnData</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(returnWeekday().method.call(<span class="keyword">this</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//滚动监听，头部固定</span></span><br><span class="line">handleScroll: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> offsetTop = <span class="keyword">this</span>.$refs.pride_tab_fixed.getBoundingClientRect().top;</span><br><span class="line">    <span class="keyword">if</span>( offsetTop &lt; <span class="number">0</span> )&#123;</span><br><span class="line">        <span class="keyword">this</span>.titleFixed = <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.titleFixed = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 改成三元</span></span><br><span class="line">    (offsetTop &lt; <span class="number">0</span>) ? <span class="keyword">this</span>.titleFixed = <span class="literal">true</span> : <span class="keyword">this</span>.titleFixed = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 我们发现条件块里面的赋值情况是布尔值，所以可以更简单</span></span><br><span class="line">    <span class="keyword">this</span>.titleFixed = offsetTop &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑与运算符"><a href="#逻辑与运算符" class="headerlink" title="逻辑与运算符"></a>逻辑与运算符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( falg )&#123;</span><br><span class="line">    someMethod()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">falg &amp;&amp; someMethod();</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-includes-处理多重条件"><a href="#使用-includes-处理多重条件" class="headerlink" title="使用 includes 处理多重条件"></a>使用 includes 处理多重条件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( code === <span class="string">'202'</span> || code === <span class="string">'203'</span> || code === <span class="string">'204'</span> )&#123;</span><br><span class="line">    someMethod()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( [<span class="string">'202'</span>,<span class="string">'203'</span>,<span class="string">'204'</span>].includes(code) )&#123;</span><br><span class="line">    someMethod()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>原文是来自掘金的一篇文章，刚有了自己的网站，记录下来学习一下。<br><a href="https://juejin.im/post/5cf8be116fb9a07edc0b4710?utm_source=gold_browser_extension" target="_blank" rel="noopener">原文地址</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/10/note-小情绪/" rel="next" title="小情绪">
+                <i class="fa fa-chevron-left"></i> 小情绪
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/13/js-关于js图片下载踩过的坑/" rel="prev" title="关于js图片下载踩过的坑">
+                关于js图片下载踩过的坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/minzz.png" alt="minzz">
+            
+              <p class="site-author-name" itemprop="name">minzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/miny-simp" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/miny-simp" target="_blank" title="cnblogs">
+                      
+                        <i class="fa fa-fw fa-leaf"></i>cnblogs</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else-结构的优化-数据结构对代码的简化"><span class="nav-number">1.</span> <span class="nav-text">if else 结构的优化(数据结构对代码的简化)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用switch来优化一下："><span class="nav-number">2.</span> <span class="nav-text">使用switch来优化一下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用数组来优化："><span class="nav-number">3.</span> <span class="nav-text">使用数组来优化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倘若我们的每个-case-是不规律的字符串呢？那我们使用对象，每个-case-为一个-key"><span class="nav-number">4.</span> <span class="nav-text">倘若我们的每个 case 是不规律的字符串呢？那我们使用对象，每个 case 为一个 key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-charAt-字符方法"><span class="nav-number">5.</span> <span class="nav-text">使用 charAt 字符方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#若要求returnWeekday-方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。"><span class="nav-number">6.</span> <span class="nav-text">若要求returnWeekday() 方法不仅返回今天是周几，还需要区分工作日和休息日，调用相关方法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三元运算"><span class="nav-number">7.</span> <span class="nav-text">三元运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑与运算符"><span class="nav-number">8.</span> <span class="nav-text">逻辑与运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-includes-处理多重条件"><span class="nav-number">9.</span> <span class="nav-text">使用 includes 处理多重条件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">minzz</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
